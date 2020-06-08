@@ -1,6 +1,6 @@
 # gSLICr: SLIC superpixels at over 250Hz
 
-![sample](sample.bmp)
+![sample](example/seg_1.jpg)
 
 This is the software bundle "gSLICr", a library for real-time superpixel segmentation written in C++ and CUDA. The current version is maintained by:
 
@@ -42,10 +42,11 @@ Several 3rd party libraries are needed for compiling gSLICr. The given version n
 
   To compile the system, use the standard cmake approach:
 ```
-  $ mkdir build
-  $ cd build
-  $ cmake /path/to/gSLICr
-  $ make
+mkdir build
+cd build
+cmake ../
+make
+
 ```
 
   To run demo:
