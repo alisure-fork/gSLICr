@@ -42,6 +42,8 @@ Several 3rd party libraries are needed for compiling gSLICr. The given version n
 
   To compile the system, use the standard cmake approach:
 ```
+cd ..
+rm -r build
 mkdir build
 cd build
 cmake ../
