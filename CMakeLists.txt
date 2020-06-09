@@ -7,7 +7,7 @@ IF(MSVC_IDE)
   add_definitions(-DUSING_CMAKE=1)
 ELSE(MSVC_IDE)
   set(CFLAGS_WARN "-Wall -Wextra -Wno-unused-parameter -Wno-strict-aliasing")
-  set(CMAKE_CXX_FLAGS "-fPIC -shared -O2 -march=native ${CFLAGS_WARN} ${CMAKE_CXX_FLAGS}")
+  set(CMAKE_CXX_FLAGS " -fPIC -shared -O2 -march=native ${CFLAGS_WARN} ${CMAKE_CXX_FLAGS}")
 ENDIF(MSVC_IDE)
 
 if(APPLE)
@@ -40,10 +40,17 @@ set(DEMO demo.cpp)
 list(APPEND "-std=c++11 -ftree-vectorize")
 SOURCE_GROUP(engines FILES ${GSLICR_LIB})
 
-cuda_add_library(gSLICr_lib ${GSLICR_LIB} NVTimer.h OPTIONS -gencode arch=compute_30,code=compute_30)
+cuda_add_library(gSLICr_lib
+			${GSLICR_LIB}
+			NVTimer.h
+			OPTIONS -gencode arch=compute_30,code=compute_30)
 target_link_libraries(gSLICr_lib ${CUDA_LIBRARY})
 
-cuda_add_library(DEMO SHARED demo.cpp ${GSLICR_LIB} NVTimer.h OPTIONS -gencode arch=compute_30,code=compute_30)
+cuda_add_library(DEMO SHARED
+			demo.cpp
+			${GSLICR_LIB}
+			NVTimer.h
+			OPTIONS -gencode arch=compute_30,code=compute_30)
 target_link_libraries(DEMO ${OpenCV_LIBS})
 
 add_executable(demo demo.cpp)
